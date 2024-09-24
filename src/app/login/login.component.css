@@ -1,0 +1,19 @@
+/* Sobreescribe algunos estilos si lo necesitas */
+
+form {
+  margin-top: 1rem;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+div.form-error {
+  color: #e3342f; /* Un rojo más vibrante */
+}
