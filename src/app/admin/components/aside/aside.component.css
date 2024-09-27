@@ -1,0 +1,8 @@
+.sidebar-menu {
+  /* Añade los estilos que desees para el aside */
+  transition: transform 0.3s ease; /* Añade una animación para mostrar/ocultar */
+}
+
+.sidebar-menu.hidden {
+  transform: translateX(-100%); /* Oculta el aside fuera de la vista */
+}
