@@ -64,6 +64,7 @@ body {
   /* 1 */
   line-height: inherit;
   /* 2 */
+  overflow-x: hidden;
 }
 
 /*
@@ -1322,3 +1323,7 @@ video {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+
+
+

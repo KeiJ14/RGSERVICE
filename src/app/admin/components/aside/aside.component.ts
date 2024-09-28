@@ -10,17 +10,18 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./aside.component.css']  // Corrección: styleUrls en plural
 })
 export class AsideComponent {
-  constructor(public asideService: AsideserviceService) {}
+ menuseguridad: string = "dashboard"; // Por defecto, el aside es visible
+ estadomenu: string = "false"; // Por defecto, el aside es visible
+ showmenuseguridad(select : string, estado : string) {
+   this.menuseguridad = select;
+   this.estadomenu = estado;
+ }
 
-  // Método para alternar la visibilidad del aside
-  toggleAside() {
-    this.asideService.toggleAside();
-    console.log('Aside visible: ', this.asideService.asideVisible$);
-  }
+ selectedItem: string | null = null;
 
-  showSidebar : boolean = true;
-
-  toggleSidebar() {
-    this.showSidebar = !this.showSidebar;
-  }
+ selectItem(item: string, modulo: string) {
+  localStorage.setItem('item', item);
+  localStorage.setItem('modulo', modulo);
+  this.selectedItem = item;
+}
 }

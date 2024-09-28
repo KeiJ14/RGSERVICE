@@ -1,6 +1,5 @@
 <div class="py-2 px-6 bg-[#f8f4f3] flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
-  <button type="button" class="text-lg text-gray-900 font-semibold" (click)="toggleAside()">AAAAAAAAAAAAAA
-    <i class="ri-menu-line bg-black"></i>
+  <button type="button" class="text-lg text-gray-900 font-semibold" (click)="toggleSidebar()"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAJUlEQVR4nGNgGAUjCvynMqa/BaNg4MH/0VQ0CigGo6loFAxSAADz7neJCOmgHgAAAABJRU5ErkJggg==">
   </button>
 
   <ul class="ml-auto flex items-center">
@@ -142,7 +141,7 @@
     </button>
 
     <li class="dropdown ml-3">
-      <button type="button" class="dropdown-toggle flex items-center">
+      <button (click)="toggleMenu()" type="button" class="dropdown-toggle flex items-center">
         <div class="flex-shrink-0 w-10 h-10 relative">
           <div class="p-1 bg-white rounded-full focus:outline-none focus:ring">
             <img class="w-8 h-8 rounded-full"
@@ -157,8 +156,9 @@
           <p class="text-xs text-gray-500">Administrator</p>
         </div>
       </button>
+      @if (!menuperfil) {
       <ul
-        class="dropdown-menu shadow-md shadow-black/5 z-30 hidden py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]">
+        class="dropdown-menu shadow-md shadow-black/5 z-30 py-1.5 rounded-md bg-white border border-gray-100 w-full max-w-[140px]" style="position: absolute;">
         <li>
           <a href="#"
             class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50">Profile</a>
@@ -171,13 +171,13 @@
           <form method="POST" action="">
             <a role="menuitem"
               class="flex items-center text-[13px] py-1.5 px-4 text-gray-600 hover:text-[#f84525] hover:bg-gray-50 cursor-pointer"
-              onclick="event.preventDefault();
-                            this.closest('form').submit();">
+              (click)="logout()">
               Log Out
             </a>
           </form>
         </li>
       </ul>
+    }
     </li>
   </ul>
 </div>
