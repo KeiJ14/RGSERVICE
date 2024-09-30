@@ -1,0 +1,60 @@
+@if (puedeVerTabla) {
+  <div class="p-0 overflow-scroll">
+    @if (datos.length > 0) {
+
+    <table class="w-full mt-4 text-left table-auto min-w-max">
+      <thead>
+        <tr>
+          @for (columna of columnas; track columna.campo) {
+          <!-- Usamos *ngFor para recorrer las columnas -->
+          <th class="p-4 border-y border-slate-200 bg-slate-50">{{ columna.nombre }}</th>}
+          <th class="p-4 border-y border-slate-200 bg-slate-50">Acciones</th> <!-- Nueva columna para botones -->
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Usamos *ngFor para recorrer las filas -->
+         @for (fila of datos; track fila.id) {
+        <tr>
+          <!-- Iteración sobre los campos de cada fila usando las columnas -->
+          @for (columna of columnas; track columna.campo) {
+          <td  class="p-4 border-b border-slate-200">{{ fila[columna.campo] }}</td>}
+          <td class="p-4 border-b border-slate-200">
+            <div class="flex gap-2">
+              <!-- Botón Editar -->
+              <button (click)="editarFila(fila)"
+                class="relative h-10 w-10 flex justify-center items-center rounded-lg text-blue-500 hover:bg-blue-500/10"
+                type="button">
+                <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                    aria-hidden="true" class="w-4 h-4">
+                    <path
+                      d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z">
+                    </path>
+                  </svg>
+                </span>
+              </button>
+
+              <!-- Botón Eliminar -->
+              <button (click)="eliminarFila(fila)"
+                class="relative h-10 w-10 flex justify-center items-center rounded-lg text-red-500 hover:bg-red-500/10"
+                type="button">
+                <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                    aria-hidden="true" class="w-4 h-4">
+                    <path
+                      d="M15 2H9v2H4v2h16V4h-5V2zM6 10h12v10c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V10zm5 2v6h2v-6h-2z">
+                    </path>
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      }
+      </tbody>
+    </table>
+  }
+  </div>
+} @else {
+  <p class="text-red-500 text-center">No tienes permiso para ver esta tabla.</p>
+}
