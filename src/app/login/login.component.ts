@@ -37,7 +37,7 @@ export class LoginComponent {
       });
       this.loadingLogin();
       console.log(credentials);
-      this.ApiService.enviarDatos(headers, 'https://matriz-riezgo.vercel.app/auth', credentials, 'POST').subscribe(
+      this.ApiService.PostDatos(headers, 'https://matriz-riezgo.vercel.app/auth', credentials, 'POST').subscribe(
         (response: any) => {
           // Guardar el token en localStorage
           const Token = response.token;

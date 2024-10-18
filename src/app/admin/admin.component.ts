@@ -6,11 +6,12 @@ import { AsideserviceService } from '../service/asideservice.service';
 import { HomedashComponent } from './pages/homedash/homedash.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { PerfilesComponent } from './pages/perfiles/perfiles.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule, AsideComponent, NavComponent, HomedashComponent, UsuariosComponent, PerfilesComponent],
+  imports: [CommonModule, AsideComponent, NavComponent, HomedashComponent, UsuariosComponent, PerfilesComponent, FormsModule],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']  // Corrección: styleUrls en plural
 })
@@ -31,8 +32,6 @@ export class AdminComponent {
     const modulo = localStorage.getItem('modulo');
     this.item = item;
     this.modulo = modulo;
-    console.log(item);
-    console.log(modulo);
   }
 
   // Método que alterna el estado del sidebar

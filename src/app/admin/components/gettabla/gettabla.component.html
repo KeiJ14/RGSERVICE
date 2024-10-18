@@ -14,6 +14,7 @@
       <tbody>
         <!-- Usamos *ngFor para recorrer las filas -->
          @for (fila of datos; track fila.id) {
+          @if (fila.estado === true) {
         <tr>
           <!-- Iteración sobre los campos de cada fila usando las columnas -->
           @for (columna of columnas; track columna.campo) {
@@ -21,7 +22,7 @@
           <td class="p-4 border-b border-slate-200">
             <div class="flex gap-2">
               <!-- Botón Editar -->
-              <button (click)="editarFila(fila)"
+              <button (click)="onEditar(fila)"
                 class="relative h-10 w-10 flex justify-center items-center rounded-lg text-blue-500 hover:bg-blue-500/10"
                 type="button">
                 <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -35,7 +36,7 @@
               </button>
 
               <!-- Botón Eliminar -->
-              <button (click)="eliminarFila(fila)"
+              <button (click)="onEliminar(fila)"
                 class="relative h-10 w-10 flex justify-center items-center rounded-lg text-red-500 hover:bg-red-500/10"
                 type="button">
                 <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -51,10 +52,59 @@
           </td>
         </tr>
       }
+    }
       </tbody>
     </table>
+
+
+
   }
   </div>
 } @else {
   <p class="text-red-500 text-center">No tienes permiso para ver esta tabla.</p>
 }
+
+<!-- Formulario de edición -->
+<div *ngIf="mostrarFormularioEdicion && editandoFila" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
+  <div class="bg-white p-6 rounded shadow-md w-96">
+    <h3 class="text-lg font-semibold mb-4">Editar Usuario</h3>
+    <form>
+      <div class="mb-4">
+        <label class="block text-sm">DNI</label>
+        <input type="text" [(ngModel)]="editandoFila.dni" name="dni" class="w-full px-3 py-2 border rounded" />
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm">Nombre</label>
+        <input type="text" [(ngModel)]="editandoFila.nombre" name="nombre" class="w-full px-3 py-2 border rounded" />
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm">Apellido</label>
+        <input type="text" [(ngModel)]="editandoFila.apellido" name="apellido" class="w-full px-3 py-2 border rounded" />
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm">Email</label>
+        <input type="email" [(ngModel)]="editandoFila.email" name="email" class="w-full px-3 py-2 border rounded" />
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm">Usuario</label>
+        <input type="text" [(ngModel)]="editandoFila.usuario" name="usuario" class="w-full px-3 py-2 border rounded" />
+      </div>
+      <!-- <div class="mb-4">
+        <label class="block text-sm">Perfil</label>
+        <select [(ngModel)]="editandoFila.perfil" name="perfil" class="w-full px-3 py-2 border rounded">
+          <option *ngFor="let perfil of perfilesDisponibles" [ngValue]="perfil.id">{{ perfil.nombre }}</option>
+        </select>
+      </div> -->
+      <div class="flex justify-between">
+        <button type="button" (click)="guardarEdicion()" class="bg-green-500 text-white px-3 py-1 rounded">
+          Guardar
+        </button>
+        <button type="button" (click)="cancelarEdicion()" class="bg-gray-500 text-white px-3 py-1 rounded">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+

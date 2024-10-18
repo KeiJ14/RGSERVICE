@@ -10,16 +10,20 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   // Método para realizar la consulta a la API
-  public consultarAPI(headers: HttpHeaders, url: string): Observable<any> {
+  public GetAPI(headers: HttpHeaders, url: string): Observable<any> {
     return this.http.get(url, { headers });
   }
-  // public consultarAPIID(headers: HttpHeaders, url: string, id: string, metodo: string): Observable<any> {
-  //   return (this.http as any)[metodo.toLowerCase()](`${url}/${id}`, { headers });
-  // }
+  public DeleteAPI(headers: HttpHeaders, url: string, id: string): Observable<any> {
+    return this.http.delete(`${url}/${id}`, { headers });
+  }
 
   // Método para realizar una solicitud POST a la API
-  public enviarDatos(headers: HttpHeaders, url: string, data: any, metodo: string): Observable<any> {
+  public PostDatos(headers: HttpHeaders, url: string, data: any, metodo: string): Observable<any> {
     return (this.http as any)[metodo.toLowerCase()](`${url}`, data, { headers });
+  }
+  // Función para actualizar un usuario
+  public PatchAPI(headers: HttpHeaders, url: string, id: string, data: any): Observable<any> {
+    return this.http.patch(`${url}/${id}`, data, { headers });
   }
 
 }
